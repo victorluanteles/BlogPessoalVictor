@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block header %}
+    <h1>Contato</h1>
+    <span class="subheading">Tem alguma dúvida? deixe uma mensagem abaixo</span>
+{% endblock %}
+
+{% block content %}
+    <main class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <p>Quer entrar em contato? Preencha o formulário abaixo para me enviar uma mensagem e entrarei em contato com você o mais breve possível!</p>
+                    <div class="my-5">
+                         {% for message in messages %}
+	                        {{message}}
+                        {% endfor %}
+                        <form action="" method="post">
+                             {% csrf_token %}
+                             <div class="form-floating">
+                                    <input class="form-control" name="name" id="name" type="text" placeholder="Insira o seu nome" required />
+                                    <label for="name">Nome</label>
+                                    <div class="invalid-feedback" >A name is required.</div>
+                             </div>
+                                <div class="form-floating">
+                                    <input class="form-control" name="email" id="email" type="email" placeholder="Insira o seu email" required />
+                                    <label for="email">Endereço de E-Mail</label>
+                                    <div class="invalid-feedback">An email is required.</div>
+                                    <div class="invalid-feedback">Email is not valid.</div>
+                                </div>
+                                <div class="form-floating">
+                                    <input class="form-control" name="phone" id="phone" type="tel" maxlength="11" minlength="11"  placeholder="Digite o seu telefone" required />
+                                    <label for="phone">Número de Telefone</label>
+                                    <div class="invalid-feedback" >A phone number is required.</div>
+                                </div>
+                                <div class="form-floating">
+                                    <textarea class="form-control" name="message" id="message" placeholder="Deixe sua mensagem" style="height: 12rem" required></textarea>
+                                    <label for="message">Mensagem</label>
+                                    <div class="invalid-feedback">A message is required.</div>
+                                </div>
+                                </br>
+                                <button class="btn btn-primary text-uppercase"  id="submitButton" type="submit">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

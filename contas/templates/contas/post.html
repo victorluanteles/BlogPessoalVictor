@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block header %}
+<h1>{{page.title}}</h1>
+<h2 class="subheading">{{page.subtitle}}</h2>
+{% endblock %}
+
+{% block content %}
+    <article class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <img src="{{page.image.url}}"  height="50" width="50">
+                       <style>
+                        p {
+                         text-indent: 2em;
+                         text-align: justify;
+                         font-size: 19px;
+                    }
+                    </style>
+
+                     <p class="post-meta">
+                          {{page.text|safe}}
+                            Posted by
+                           {{page.user.first_name}}
+                           em {{page.created_at | date:"d/m/y" }}
+                     </p>
+                </div>
+            </div>
+        </div>
+    </article>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block header %}
+    <h1>Victor Luan</h1>
+    <span class="subheading">Estudante de sistemas de informação</span>
+{% endblock %}
+
+{% block content %}
+<main>
+    <aside>
+        <h2>  Categorias</h2>
+        {% for item_c in all_category %}
+        <a href="{% url 'filter' item_c.id %}">
+            <p>{{item_c.title}}</p>
+        </a>
+         <hr class="my-1" />
+        {% endfor %}
+    </aside>
+
+    <section>
+        {% for item in page_obj %}
+             <table cellspacing="30" >
+                 <hr class="my-1" />
+                  <tr>
+
+                      <td>
+                            <img class = "inlinepost" src="{{item.image.url}}"  height="220" width="220">
+                      </td>
+                      <td>
+                          <a href="{% url 'post' item.id %}" >
+                                <h3  class="post-title ">{{item.title}}</h3>
+                                <h5 class="post-subtitle inlinepost">{{item.subtitle}}</h5>
+                              <p>
+                                  <font size=2.5 >
+                                  {{item.description}}
+                                  </br>
+                                  {{item.category}}
+                                  </br>
+                                  {{item.created_at | date:"d/m/y" }}
+                                  </font>
+                              </p>
+                            </a>
+                      </td>
+                 </tr>
+             </table>
+            {% endfor %}
+            <hr class="m-4" />
+            <div class="d-flex justify-content-center mb-4">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a class="btn btn-primary text-uppercase" href="?page=1">&laquo; Primeira</a>
+                        <a class="btn btn-primary text-uppercase" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                    {% endif %}
+                         {% if page_obj.has_next %}
+                        <a class="btn btn-primary text-uppercase " href="?page={{ page_obj.next_page_number }}">Próxima </a>
+                        <a class="btn btn-primary text-uppercase"href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+                    {% endif %}
+
+                </span>
+            </div>
+        </section>
+ </main>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% load static %}<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Título da página</title>
+      <link  rel="stylesheet" href=" {%  static   'css/styles.css'  %}" />
+    <meta charset="utf-8">
+  </head>
+  <body>
+<section>
+     <aside>
+      <select name="select"  onchange="location = this.value;">
+        <option value="{% url 'blog'  %}" selected><h1>Categorias</h1> </option>
+          {% for item_c in all_category %}
+              <option value="{% url 'filter' item_c.id %}">{{item_c.title}}</option>
+         {% endfor %}
+    </select>
+</aside>
+
+        {% for item in post %}
+        <table cellspacing="30">
+        <tr>
+          <td>   <img src="{{item.image.url}}"  height="220" width="220">  </td>
+            <td>
+                <h1>  {{item.title}} {{item.id}} {{item.category}}  </h1>
+                <h1>  {{id_c}} </h1>
+            </td>
+         </tr>
+        </table>
+
+        {% endfor %}
+
+
+
+
+</section>
+
+    <table border="0.4">
+            <td>
+              <h2>  Categorias</h2>
+                {% for item_c in all_category %}
+                <a href="{% url 'filter' item_c.id %}">
+                    <p>{{item_c.title}}</p>
+                </a>
+                {% endfor %}
+            </td>
+        </table>
+   </body>
+<style>
+    p {
+    text-indent: 2em;
+}
+</style>
+
+                 <p >
+                        Amante da tecnologia, cultura pop e assuntos geeks, minha história com a informática começa bem cedo, através dos jogos de computadores, que tiveram grande influência na minha compreensão do que era o hardware dessas máquinas, visto que a cada jogo digital que não tinha o desempenho esperado em meu computador, eu me sentia na obrigação de saber os motivos daquela execução ruim. Através disso, comecei a pesquisar por conta própria o que fazia um computador funcionar, e assim o funcionamento dos seus componentes deixou de ser algo “mágico” se tornando uma visão técnica.
+                    </p>
+
+                    <p >
+                    Em 2018 decidi que iria realmente me aprofundar na tecnologia da informação, por meio de um curso Técnico em informática, cursado na Escola Profissionalizante Santo Agostinho, finalizado no primeiro semestre de 2019, o curso técnico me proporcionou conhecimentos em redes de computadores, hardware, lógica de programação e bando de dados. De forma resumida, foi possível absorver uma visão geral do que é a informática.
+                    </p>
+
+                    <p >
+                    Finalizando o ensino técnico, no segundo semestre de 2019, comecei minha graduação em Sistemas e Informação na universidade Pontifícia Universidade Católica de Minas Gerais com conclusão prevista para o primeiro semestre de 2023.
+                    </p>
+
+
+
+
+</html>
+
+
+
+
+
+
